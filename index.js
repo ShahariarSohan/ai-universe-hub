@@ -40,18 +40,26 @@ const aiCardLoad = (details) => {
 const aiModalData = async (id) => {
   const res = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`)
   const data = await res.json()
-  console.log(data.data)
-  modalShow()
+  const detail = data.data
+  console.log(detail)
+  modalShow(detail)
 }
-const modalShow = () => {
+const modalShow = (detail) => {
   const modalContainer = document.getElementById('modal-container')
   modalContainer.innerHTML = `
   <dialog id="ai_modal" class="modal">
-  <form method="dialog" class="modal-box w-11/12 max-w-5xl">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Click the button below to close</p>
-    <div class="modal-action">
-      <button class="btn">Close</button>
+  <form method="dialog" class="modal-box w-11/12 max-w-4xl">
+    <div id="modal-div" class="flex  flex-row justify-center items-center gap-10">
+    <div id="left" class="flex-1">
+    <h2 class="text-3xl font-bold">Hey What'sApp</h2>
+    </div>
+    <div id="logo-container" class="flex-1 p-10 space-y-5">
+    <div class="w-[100%]">
+    <img src="${detail?.image_link}" class="w-full h-[200px] rounded-xl"/>
+    </div>
+    <h3 class="text-lg font-bold text-center">${detail?.input_output_examples[0]?.input}</h3>
+    <p class="text-gray-400 text-center">${detail?.input_output_examples[0]?.output}</p>
+    </div>
     </div>
   </form>
 </dialog>
