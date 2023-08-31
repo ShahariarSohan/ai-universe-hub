@@ -51,30 +51,33 @@ const modalShow = (detail) => {
   <form method="dialog" class="modal-box w-11/12 max-w-5xl">
     <div id="modal-div" class="flex  flex-row justify-center items-center gap-10">
     <div id="left" class="w-[50%] bg-orange-100 p-10 space-y-5">
-    <h2 class="text-xl font-bold">${detail.description}</h2>
+    <h2 class="text-xl font-bold">${detail?.description}</h2>
     <div id="price-div" class="flex justify-center gap-3">
       <div class="text-center text-lg font-bold text-red-600"> 
-      <h3>${detail.pricing[0].price}</h3>
-      <h3>${detail.pricing[0].plan}</h3>
+      <h3>${detail?.pricing[0]?.price}</h3>
+      <h3>${detail?.pricing[0]?.plan}</h3>
       </div>
       <div class="text-center text-lg font-bold text-red-600"> 
-      <h3>${detail.pricing[1].price}</h3>
-      <h3>${detail.pricing[1].plan}</h3>
+      <h3>${detail?.pricing[1]?.price}</h3>
+      <h3>${detail?.pricing[1]?.plan}</h3>
       </div>
       <div class="text-center text-lg font-bold text-red-600"> 
-      <h3>${detail.pricing[2].price}</h3>
-      <h3>${detail.pricing[2].plan}</h3>
+      <h3>${detail?.pricing[2]?.price}</h3>
+      <h3>${detail?.pricing[2]?.plan}</h3>
       </div>
     </div>
     </div>
     <div id="logo-container" class="w-[50%] p-10 space-y-5">
     <div class="w-[100%]">
-    <img src="${detail.image_link}" class="w-full h-[200px] rounded-xl"/>
+    <img src="${detail?.image_link}" class="w-full h-[200px] rounded-xl"/>
     </div>
     <h3 class="text-lg font-bold text-center">${detail?.input_output_examples[0]?.input}</h3>
     <p class="text-gray-400 text-center">${detail?.input_output_examples[0]?.output}</p>
     </div>
     </div>
+    <div class="modal-action text-center">
+    <button class="btn btn-primary">Close</button>
+  </div
   </form>
 </dialog>
   `
