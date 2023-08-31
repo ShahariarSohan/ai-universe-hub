@@ -3,7 +3,7 @@ const aiDataLoad = async () => {
   const res = await fetch(`https://openapi.programming-hero.com/api/ai/tools`)
   const data = await res.json()
   const details = data.data.tools
-  console.log(details)
+  // console.log(details)
   aiCardLoad(details)
 }
 aiDataLoad()
@@ -14,14 +14,14 @@ const aiCardLoad = (details) => {
   details = details.slice(0, 9)
   console.log(details.length)
   details.forEach(detail => {
-    console.log(detail)
+    // console.log(detail)
     const aiCard = document.createElement('div')
     aiCard.classList = "card bg-base-100 shadow-xl my-5 "
     aiCard.innerHTML = `
-        <figure class="w-[80%] h-[180px] mx-auto">
+        <figure onclick="aiModalData('${detail.id}')" class="w-[80%] h-[180px] mx-auto">
         <img src="${detail?.image}" alt="ai" class="rounded-xl w-full h-full" />
       </figure>
-      <div class=" w-[80%] h-[180px] mx-auto my-10">
+      <div onclick="aiModalData('${detail.id}')" class=" w-[80%] h-[180px] mx-auto my-10">
         <h2 class="text-xl font-bold">Features</h2>
         <p class="text-md text-gray-400 ">1. ${detail?.features[0]}</p>
         <p class="text-md text-gray-400 ">2. ${detail?.features[1]}</p>
@@ -34,4 +34,10 @@ const aiCardLoad = (details) => {
         `
     aiCardContainer.appendChild(aiCard)
   });
+}
+//ai modal data
+const aiModalData = async (id) => {
+  const res = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`)
+  const data = await res.json()
+  console.log(data.data)
 }
