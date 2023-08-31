@@ -41,5 +41,20 @@ const aiModalData = async (id) => {
   const res = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`)
   const data = await res.json()
   console.log(data.data)
+  modalShow()
+}
+const modalShow = () => {
+  const modalContainer = document.getElementById('modal-container')
+  modalContainer.innerHTML = `
+  <dialog id="ai_modal" class="modal">
+  <form method="dialog" class="modal-box w-11/12 max-w-5xl">
+    <h3 class="font-bold text-lg">Hello!</h3>
+    <p class="py-4">Click the button below to close</p>
+    <div class="modal-action">
+      <button class="btn">Close</button>
+    </div>
+  </form>
+</dialog>
+  `
   ai_modal.showModal()
 }
